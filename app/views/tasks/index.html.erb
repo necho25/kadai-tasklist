@@ -1,11 +1,13 @@
-<h1><%= #タスク名 %></h1>
+<h1>やる事リスト</h1>
 
-<%= #link_to '新規タスク作成' リンク %>
-<%= #カテゴリ繰り返し表示 %>
-<%= #link_to '新規カテゴリ作成' リンク %>
-
-<%= #タスクの繰り返し処理 %>
 <ul>
-  <li><%= #checkbox %><%= #link_to 'タスクの表示' edit %><%= #[Delete] %></li>
+  <% @tasks.each do |task| %>
+  <li>
+      <%= task.id %> : <%= link_to task.content, task %> :
+      <%= link_to '[編集]', edit_task_path(task) %>
+      <%= link_to '[削除]', task, method: :delete, data: {confirm: '本当に削除しますか？'} %>
+  </li>
+  <% end %>
 </ul>
-<% end %>
+
+<%= link_to '新規タスク作成', new_task_path %>
