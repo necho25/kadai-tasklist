@@ -1,6 +1,10 @@
 <h1><%= @task.id %>個目のタスク</h1>
 
-<p><%= @task.content %></p>
+
+<% array =["(未)","(完)"] %>
+<p><%= @task.content %><%= array[@task.status.to_i] if @task.status != nil %></p>
+
+
 
 <%= link_to '[編集]', edit_task_path(@task) %>
 <%= link_to '[削除]', @task, method: :delete, data: {confirm: '本当に削除しますか？'} %>

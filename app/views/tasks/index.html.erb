@@ -1,9 +1,10 @@
 <h1>やる事リスト</h1>
 
+<% array =["(未)","(完)"] %>
 <ul>
   <% @tasks.each do |task| %>
   <li>
-      <%= task.id %> : <%= link_to task.content, task %> :
+      <%= task.id %> : <%= link_to task.content, task %> <%= array[task.status.to_i] if task.status != nil %>
       <%= link_to '[編集]', edit_task_path(task) %>
       <%= link_to '[削除]', task, method: :delete, data: {confirm: '本当に削除しますか？'} %>
   </li>

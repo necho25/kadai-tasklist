@@ -1,0 +1,19 @@
+<%= form_for(@task) do |f| %>
+
+  <% if @task.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+        <% @task.errors.full_messages.each do |task| %>
+          <li><%= task %></li>
+        <% end %>
+    </ul>
+  </div>
+<% end %>
+  
+  <%= f.label :content, 'タスク内容' %>
+  <%= f.text_area :content %>
+  <%= f.select :status, [["(未)","0"],["(完)","1"]] %>
+  <%= f.submit 'OK' %>
+<% end %>
+
+<%= link_to '一覧へ戻る', root_path %>
