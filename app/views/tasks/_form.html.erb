@@ -1,19 +1,25 @@
-<%= form_for(@task) do |f| %>
-
-  <% if @task.errors.any? %>
-  <div id="error_explanation">
-    <ul>
-        <% @task.errors.full_messages.each do |task| %>
-          <li><%= task %></li>
-        <% end %>
-    </ul>
-  </div>
-<% end %>
+<div class="row">
+  <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6">
+    <%= form_for(@task) do |f| %>
   
-  <%= f.label :content, 'タスク内容' %>
-  <%= f.text_area :content %>
-  <%= f.select :status, [["(未)","0"],["(完)","1"]] %>
-  <%= f.submit 'OK' %>
-<% end %>
-
-<%= link_to '一覧へ戻る', root_path %>
+      <% if @task.errors.any? %>
+        <div class="alert warning">
+          <ul>
+            <% @task.errors.full_messages.each do |task| %>
+              <li><%= task %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    
+      <div class="form-group">
+        <%= f.label :content, 'タスク内容' %>
+        <%= f.text_area :content, class:'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.select :status, [["(未)","0"],["(完)","1"]], {include_blank: '選択して下さい'} %>
+      </div>
+      <%= f.submit 'OK', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

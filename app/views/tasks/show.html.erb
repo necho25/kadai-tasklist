@@ -2,10 +2,23 @@
 
 
 <% array =["(未)","(完)"] %>
-<p><%= @task.content %><%= array[@task.status.to_i] if @task.status != nil %></p>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>内容</th>
+      <th>状態</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @task.content %></td>
+      <td><%= array[@task.status.to_i] if @task.status != nil %></td>
+    </tr>
+  </tbody>
+</table>
+<p></p>
 
 
 
-<%= link_to '[編集]', edit_task_path(@task) %>
-<%= link_to '[削除]', @task, method: :delete, data: {confirm: '本当に削除しますか？'} %>
-<%= link_to '[一覧へ戻る]',  root_path %>
+<%= link_to '[編集]', edit_task_path(@task), class: 'btn btn-primary' %>
+<%= link_to '[削除]', @task, method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-danger'  %>
