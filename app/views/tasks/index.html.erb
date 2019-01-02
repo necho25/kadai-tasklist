@@ -1,10 +1,40 @@
-<ul class="nav nav-tabs">
-  <li class="active"><a href="#">やる事リスト</a></li>
-  <li><a href="#">買い物リスト</a></li>
-  <li><a href="#">色々</a></li>
-</ul>
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#">やる事リスト</a></li>
+    <li><a href="#">買い物リスト</a></li>
+    <li><a href="#">色々</a></li>
+  </ul>
 
-<% if @tasks.any? %>
+<% if logged_in? %>
+  <% if @tasks.any? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>内容</th>
+          <th>状態</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% array =["(未)","(完)"] %>
+        <% @tasks.each do |task| %>
+        <tr>
+            <td><%= task.id %>
+            <td><%= link_to task.content, task %></td>
+            <td><%= array[task.status.to_i] if task.status != nil %></td>
+            <td><%= link_to '[編集]', edit_task_path(task) %>
+            <%= link_to '[削除]', task, method: :delete, data: {confirm: '本当に削除しますか？'} %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div>
+      <%= paginate @tasks %>
+    </div>
+  <% end %>
+    <%= link_to '新規作成', new_task_path, class: 'btn btn-primary' %>
+  
+<% else %>
+  <% if @tasks.any? %>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -20,8 +50,6 @@
           <td><%= task.id %>
           <td><%= link_to task.content, task %></td>
           <td><%= array[task.status.to_i] if task.status != nil %></td>
-          <td><%= link_to '[編集]', edit_task_path(task) %>
-          <%= link_to '[削除]', task, method: :delete, data: {confirm: '本当に削除しますか？'} %></td>
       </tr>
       <% end %>
     </tbody>
@@ -31,4 +59,6 @@
   </div>
   <% end %>
   
-  <%= link_to '新規作成', new_task_path, class: 'btn btn-primary' %>
+  <%= link_to  '新規登録', signup_path, class: 'btn btn-primary' %>
+  <%= link_to  'ログイン', signup_path, class: 'btn btn-primary' %>
+<% end %>

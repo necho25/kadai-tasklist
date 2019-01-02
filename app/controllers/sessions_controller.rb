@@ -5,9 +5,9 @@ class SessionsController < ApplicationController
   def create
     email = params[:session][:email].downcase
     password = params[:session][:password]
-    if login(email, password)
+    if login(email,password)
       flash[:success] = 'ログインしました'
-      redirect_to @task
+      redirect_to @user
     else
       flash.now[:danger] = 'ログイン出来ませんでした'
       render :new
@@ -22,10 +22,10 @@ class SessionsController < ApplicationController
   
   private
   
-  def login(email, password)
-    @task = Task.find_by(email: email)
-    if @task && @task.authenticate(password)
-      session[:user.id] = @task.id
+  def login(email,password)
+    @user = User.find_by(email: email)
+    if @user && @user.authenticate(password)
+      session[:user_id] = @user.id
       return true
     else
       return false
