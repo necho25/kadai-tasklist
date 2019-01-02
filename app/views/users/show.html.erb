@@ -16,4 +16,9 @@
       <li><a href="#">プロフィール編集</a></li>
     </ul>
   </div>
+  <div class="col-xs-7 col-xs-offset-5">
+    <ul>
+      <li class="<%= 'active' if current_page?(user_path(@user)) %>"><%= link_to user_path(@user) do %>タスク <span class="badge"><%= @count_tasks %></span><% end %></li>
+    </ul>
+  </div>
 </div>
