@@ -1,0 +1,33 @@
+<div class="text-center">
+  <h1>ログイン</h1>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6">
+    <%= form_for(:session, url: task_login_path) do |f| %>
+  
+      <% if @task.errors.any? %>
+        <div class="alert warning">
+          <ul>
+            <% @task.errors.full_messages.each do |task| %>
+              <li><%= task %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    
+      <div class="form-group">
+        <%= f.label :email, 'メールアドレス' %>
+        <%= f.email_field :emal, class:'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :password, 'パスワード' %>
+        <%= f.password_field :password, class:'form-control' %>
+      </div>
+      
+        <%= f.submit 'ログイン', class: 'btn btn-default btn-block' %>
+    <% end %>
+    <p>登録がまだなら、<%= link_to '今すぐ新規登録を！', signup_path %></p>
+  </div>
+</div>
