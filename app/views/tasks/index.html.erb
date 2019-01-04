@@ -1,10 +1,5 @@
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#">やる事リスト</a></li>
-    <li><a href="#">買い物リスト</a></li>
-    <li><a href="#">色々</a></li>
-  </ul>
-
 <% if logged_in? %>
+<p>Your Task List</p>
   <% if @tasks.any? %>
     <table class="table table-striped">
       <thead>
@@ -35,29 +30,9 @@
     <%= link_to '新規作成', new_task_path, class: 'btn btn-primary' %>
   
 <% else %>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>内容</th>
-        <th>状態</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-          <td>1</td>
-          <td>イメージ</td>
-          <td>未</td>
-      </tr>
-      <tr>
-          <td>２</td>
-          <td>ダミー</td>
-          <td>完</td>
-      </tr>
-    </tbody>
-  </table>
 
-  
+<h1>TaskListアプリです</h1>
+
   <%= link_to  '新規登録', signup_path, class: 'btn btn-primary' %>
   <%= link_to  'ログイン', login_path, class: 'btn btn-primary' %>
 <% end %>
