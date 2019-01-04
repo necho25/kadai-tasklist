@@ -3,7 +3,9 @@ class TasksController < ApplicationController
   before_action :correct_user, only: [:destroy, :edit]
   
   def index
-    @tasks = Task.all.page(params[:page])
+    if logged_in?
+      @tasks = Task.all.page(params[:page])
+    end
   end
   
   def show

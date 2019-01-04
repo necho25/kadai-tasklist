@@ -35,7 +35,6 @@
     <%= link_to '新規作成', new_task_path, class: 'btn btn-primary' %>
   
 <% else %>
-  <% if @tasks.any? %>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -45,20 +44,19 @@
       </tr>
     </thead>
     <tbody>
-      <% array =["(未)","(完)"] %>
-      <% @tasks.each do |task| %>
       <tr>
-          <td><%= task.id %>
-          <td><%= link_to task.content, task %></td>
-          <td><%= array[task.status.to_i] if task.status != nil %></td>
+          <td>1</td>
+          <td>イメージ</td>
+          <td>未</td>
       </tr>
-      <% end %>
+      <tr>
+          <td>２</td>
+          <td>ダミー</td>
+          <td>完</td>
+      </tr>
     </tbody>
   </table>
-  <div>
-    <%= paginate @tasks %>
-  </div>
-  <% end %>
+
   
   <%= link_to  '新規登録', signup_path, class: 'btn btn-primary' %>
   <%= link_to  'ログイン', login_path, class: 'btn btn-primary' %>
